@@ -18,19 +18,12 @@ jobs:
     - name: check out on ubuntu machine
       uses: actions/checkout@v2
       
-    - name: Build Flask Image 
-      uses: mr-smithers-excellent/docker-build-push@v5
-      with:
-        dockerfile: ./app/Dockerfile
-        registry: docker.io
-        tags: flask_app_ubuntu
-        image: rozdockerforever/simple_flask
-
 
 
     - name: Push the image to the Docker Hub
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
+        dockerfile: ./app/Dockerfile
         registry: docker.io
         tags: flask_app_ubuntu
         image: rozdockerforever/simple_flask
