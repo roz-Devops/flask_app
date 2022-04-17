@@ -1,0 +1,28 @@
+#github ci action for flask app
+
+
+name: Flask CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: check out on ubuntu machine
+      uses: actions/checkout@v2
+
+    - name: Push to Docker Hub
+      uses: mr-smithers-excellent/docker-build-push@v5
+      registry: docker.io
+      dockerfile: app/Dockerfile
+      with:
+        image: rozdockerforever/simple_flask:flask_app_ubuntu
+        username: ${{ secret.DOCKER_USERNAME }}
+        password: ${{ secret.DOCKER_PASSWORD }}
