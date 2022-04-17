@@ -21,7 +21,7 @@ jobs:
     - name: Build and Push to Docker Hub
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        dockerfile: /app/Dockerfie
+        dockerfile: ../../app/Dockerfile
         registry: docker.io
         image: rozdockerforever/simple_flask:flask_app_ubuntu
         username: ${{ secrets.DOCKER_USERNAME }}
