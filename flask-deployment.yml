@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-service
+spec:
+  type: NodePort
+  ports:
+  - nodePort: 8080
+    port: 3000
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  selector:
+    app: flask-pod
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask-pod
+  template:
+    metadata:
+      labels:
+        app: flask-pod
+    spec:
+      containers:
+      - name: flask-pod
+        image: rozdockerforever/simple_flask:flask_app
+        ports:
+        - containerPort: 3000
