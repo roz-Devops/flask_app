@@ -23,7 +23,7 @@ jobs:
       with:
         dockerfile: ./app/Dockerfile
         registry: docker.io
-        tags: latest
-        image: rozdockerforever/simple_flask:flask_app_ubuntu
+        tags: flask_app_ubuntu
+        image: rozdockerforever/simple_flask
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
