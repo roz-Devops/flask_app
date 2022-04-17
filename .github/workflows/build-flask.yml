@@ -18,11 +18,11 @@ jobs:
     - name: check out on ubuntu machine
       uses: actions/checkout@v2
 
-    - name: Push to Docker Hub
+    - name: Build and Push to Docker Hub
       uses: mr-smithers-excellent/docker-build-push@v5
-      registry: docker.io
-      dockerfile: app/Dockerfile
       with:
+        dockerfile: /app/Dockerfie
+        registry: docker.io
         image: rozdockerforever/simple_flask:flask_app_ubuntu
         username: ${{ secret.DOCKER_USERNAME }}
         password: ${{ secret.DOCKER_PASSWORD }}
