@@ -29,14 +29,12 @@ jobs:
        curl_var=$(curl http://localhost:3000/?msg=test) 
        if [ $(echo "${curl_var}") == "test" ]; then echo works; fi
        
-
-
-#     - name: Push the image to the Docker Hub
-#       uses: mr-smithers-excellent/docker-build-push@v5
-#       with:
-#         dockerfile: ./app/Dockerfile
-#         registry: docker.io
-#         tags: flask_app_ubuntu
-#         image: rozdockerforever/simple_flask
-#         username: ${{ secrets.DOCKER_USERNAME }}
-#         password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Push the image to the Docker Hub
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        dockerfile: ./app/Dockerfile
+        registry: docker.io
+        tags: flask_app_ubuntu
+        image: rozdockerforever/simple_flask
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
