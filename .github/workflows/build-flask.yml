@@ -13,8 +13,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    container:
-      image:
 
     steps:
     - name: check out on ubuntu machine
@@ -28,7 +26,8 @@ jobs:
       
     - name: Test Flask Container
        run:|
-       curl_var=$(curl http://127.0.0.1:3000/?msg=test) | if [ $(echo "${curl_var}") == "test" ]; then echo works; fi
+       curl_var=$(curl http://127.0.0.1:3000/?msg=test) 
+       if [ $(echo "${curl_var}") == "test" ]; then echo works; fi
        
 
 
