@@ -22,7 +22,7 @@ jobs:
       run: docker build . --file ./app/Dockerfile --tag rozdockerforever/simple_flask:flask_app_ubuntu
 
     - name: Run a flask conatiner
-      run: docker run -d --name flask_app -p 3000:3000 flask_app_ubuntu
+      run: docker run -d --name flask_app -p 3000:3000 rozdockerforever/simple_flask:flask_app_ubuntu
       
 #     - name: Test Flask Container
 #        run:|
