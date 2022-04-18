@@ -1,9 +1,34 @@
 from flask import Flask
 from flask import request, Response
+from flask_healthz import healthz
+from flask_healthz import HealthError
 import sys
 
 app = Flask(__name__)
 port = sys.argv[1];
+app.register_blueprint(healthz, url_prefix="/healthz")
+
+def printok():
+    print("It's Alive and Works smoothly!")
+
+def liveness():
+    try:
+        printok()
+    except Exception:
+        raise HealthError(" Liveness Failure!")
+
+def readiness():
+    try:
+        printok()
+    except Exception:
+        raise HealthError("Readiness Failure, Can't serve Traffic!")
+
+app.config.update(
+    HEALTHZ = {
+        "live": app.name + ".liveness",
+        "ready": app .name+ ".readiness",
+    }
+)
 
 
 @app.route("/")

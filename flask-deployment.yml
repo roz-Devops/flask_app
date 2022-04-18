@@ -29,6 +29,18 @@ spec:
     spec:
       containers:
       - name: flask-pod
-        image: rozdockerforever/simple_flask:flask_app
+        image: rozdockerforever/simple_flask:flask_app_ubuntu
         ports:
         - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /healthz/live
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /healthz/ready
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 3
