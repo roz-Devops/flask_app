@@ -17,18 +17,18 @@ jobs:
     steps:
     - name: check out on ubuntu machine
       uses: actions/checkout@v2
-    
+
     - name: Build the Docker image
       run: docker build . --file ./app/Dockerfile --tag rozdockerforever/simple_flask:flask_app_ubuntu
 
     - name: Run a flask conatiner and test
       run: docker run -d --name flask_app -p 3000:3000 rozdockerforever/simple_flask:flask_app_ubuntu
-      
+
     - run:  |
        sleep 5
-       curl_var=$(curl http://localhost:3000/?msg=test) 
+       curl_var=$(curl http://localhost:3000/?msg=test)
        if [ $(echo "${curl_var}") == "test" ]; then echo works; fi
-       
+
     - name: Push the image to the Docker Hub
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
