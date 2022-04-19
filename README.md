@@ -10,5 +10,7 @@ https://www.youtube.com/watch?v=R8_veQiYBjI&t=2s
 
 
 
-minikube , ubuntu 18:
-minikube start --extra-config=apiserver.service-node-port-range=1-65535 --driver=docker --alsologtostderr
+minikube , 
+AWS ubuntu 18:
+
+minikube start --extra-config=apiserver.service-node-port-range=1-65535 --vm-driver=none
